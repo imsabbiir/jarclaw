@@ -1,26 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.font-space {
+  font-family: "Space Grotesk", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.font-jetbrains {
+  font-family: "JetBrains Mono", monospace;
+}
+.font-ibm {
+  font-family: "IBM Plex Mono", monospace;
+}
+.font-geist {
+  font-family: "Geist Mono", monospace;
+}
+body {
+  background: #050505;
+  width: full;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.holo-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 77, 0, 0.04) 0%,
+    rgba(255, 77, 0, 0.02) 50%,
+    rgba(255, 77, 0, 0.04) 100%
+  );
+  border: 1px solid rgba(255, 77, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.holo-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 77, 0, 0.06),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+/* Hover → sweep */
+.holo-card:hover::before {
+  transform: translateX(100%);
+}
+
+/* ✨ Fix: prevent reverse animation flash */
+.holo-card::before {
+  will-change: transform;
+}
+
+.glitch-text {
+  position: relative;
+}
+.glitch-text::before {
+  content: attr(data-text);
+  position: absolute;
+  color: #ff4d00;
+  z-index: -1;
+  animation: glitch-1 3s infinite linear;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  color: #00d4ff;
+  z-index: -2;
+  animation: glitch-2 3s infinite linear;
+  animation-delay: -1.5s;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.strike-through {
+  position: relative;
+  display: inline-block;
+}
+.strike-through::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  right: -4px;
+  top: 50%;
+  height: 3px;
+  background: #ff4d00;
+  transform: rotate(-1deg);
+}
+.strike-through::before {
+  content: "under 2 minutes";
+  position: absolute;
+  bottom: -80%;
+  width: full;
+  height: full;
+  transform: translateX(15px);
+}
+
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #ff4d00 50%,
+    transparent 100%
+  );
+  opacity: 0.25;
+  z-index: 9998;
+  pointer-events: none;
+  box-shadow: 0 0 2px #ff4d00;
+  animation: scan-down 4s linear infinite;
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(-50%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes scan-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes glitch-1 {
+  0%,
+  100% {
+    clip-path: inset(0 0 95% 0);
+    transform: translate(-2px);
+  }
+  10% {
+    clip-path: inset(40% 0 30% 0);
+    transform: translate(3px);
+  }
+  20% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(-1px);
+  }
+  30% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(0);
+  }
+  40% {
+    clip-path: inset(50% 0 20% 0);
+    transform: translate(2px);
+  }
+  50% {
+    clip-path: inset(0 0 80% 0);
+    transform: translate(-3px);
+  }
+}
+
+@keyframes glitch-2 {
+  0%,
+  100% {
+    clip-path: inset(95% 0 0 0);
+    transform: translate(2px);
+  }
+  10% {
+    clip-path: inset(30% 0 40% 0);
+    transform: translate(-3px);
+  }
+  20% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translate(1px);
+  }
+  30% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(0);
+  }
+  40% {
+    clip-path: inset(20% 0 50% 0);
+    transform: translate(-2px);
+  }
+  50% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(3px);
+  }
 }
