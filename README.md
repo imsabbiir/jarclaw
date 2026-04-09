@@ -9,6 +9,7 @@
 ## 🛠 Tech Stack & Design Philosophy
 Built with a **Brutal-Minimalist** aesthetic, the project focuses on high-contrast UI, rapid performance, and developer-centric UX.
 
+* **Language:** TypeScript (Strict Mode)
 * **Framework:** Next.js 14+ (App Router)
 * **Styling:** Tailwind CSS
 * **Icons:** Lucide React
