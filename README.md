@@ -1,5 +1,5 @@
 <h3>
-  <img src="./public/arc.png" width="24" style="background-color: #fe5104; padding: 4px; border-radius: 4px; vertical-align: middle;" /> 
+  <img src="./public/arc.jpg" width="24" style="background-color: #fe5104; padding: 4px; border-radius: 4px; vertical-align: middle;" /> 
   <span style="vertical-align: middle; margin-left: 8px;">JarClaw | Autonomous AI Agent Systems</span>
 </h3>
 
